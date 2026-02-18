@@ -1,0 +1,5 @@
+channels:
+  - https://staging.continuum.io/pbp/fs/setuptools-feedstock/pr101/d6dd798
+
+build_env_vars:
+  ANACONDA_ROCKET_ENABLE_PY314 : yes

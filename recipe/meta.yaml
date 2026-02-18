@@ -31,11 +31,6 @@ requirements:
     - python
     - sysroot_linux-64  # [linux]
     - libgcc-ng  # [linux]
-    - numpy ==1.13.3  # [py==36]
-    - numpy ==1.17.0  # [py==37]
-    - numpy ==1.17.5  # [py==38]
-    - numpy ==1.19.3  # [py<39 and linux]
-    - numpy ==1.21.0  # [py<39 and darwin]
     - numpy >=2.0.0  # [py>=39]
     - packaging
     - pip
@@ -47,16 +42,10 @@ requirements:
     - python
     - sysroot_linux-64  # [linux]
     - libgcc-ng  # [linux]
-    - numpy >=1.13.3  # [py<37]
-    - numpy >=1.21.0  # [py<=39 and osx]
     - numpy >=1.21.2  # [py>=310]
     - numpy >=1.21.4  # [py>=310 and osx]
     - numpy >=1.23.5  # [py>=311]
     - numpy >=1.26.0  # [py>=312]
-    - numpy >=1.19.3  # [py>=36 and linux]
-    - numpy >=1.17.0  # [py>=37]
-    - numpy >=1.17.3  # [py>=38]
-    - numpy >=1.19.3  # [py>=39]
 
 test:
   imports:
