@@ -10,9 +10,9 @@ source:
   sha256: 996eb282ca4b43ec6a3972414de0e2331f5d9cda2b41091a49739c19fb843798
 
 build:
-  skip: true  # [win]
+  skip: true  # [py<=310 or win]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
   missing_dso_whitelist:  # [linux]
     - /lib64/ld-linux-x86-64.so.2  # [linux]
     - /lib64/libc.so.6  # [linux]
@@ -37,6 +37,7 @@ requirements:
     - scikit-build >=0.14.0
     - setuptools >=59.2.0  # [py<312]
     - setuptools <70.0.0  # [py>=312]
+    - zlib
   run:
     - cmake
     - python
@@ -58,10 +59,15 @@ test:
 about:
   home: https://github.com/opencv/opencv-python
   summary: Wrapper package for OpenCV python bindings.
+  description: |
+    Pre-built CPU-only OpenCV packages for Python.
   license: MIT AND Apache-2.0
   license_file:
     - LICENSE-3RD-PARTY.txt
     - LICENSE.txt
+  license_family: MIT
+  doc_url: https://github.com/opencv/opencv-python
+  dev_url: https://github.com/opencv/opencv-python
 
 extra:
   recipe-maintainers:
