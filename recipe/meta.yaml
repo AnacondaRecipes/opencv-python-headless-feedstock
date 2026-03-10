@@ -10,7 +10,7 @@ source:
   sha256: 996eb282ca4b43ec6a3972414de0e2331f5d9cda2b41091a49739c19fb843798
 
 build:
-  skip: true  # [py<=310 or win]
+  skip: true  # [py<310 or win]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
   missing_dso_whitelist:  # [linux]
@@ -29,15 +29,17 @@ requirements:
     - make  # [unix]
   host:
     - python
+    - sysroot_linux-64 {{ c_stdlib_version }} # [linux]
+    - libgcc-ng {{ c_compiler_version }} # [linux]
     - sysroot_linux-64  # [linux]
     - libgcc-ng  # [linux]
-    - numpy >=2.0.0  # [py>=39]
+    - numpy 2.2.4
     - packaging
     - pip
     - scikit-build >=0.14.0
     - setuptools >=59.2.0  # [py<312]
     - setuptools <70.0.0  # [py>=312]
-    - zlib
+    - zlib 1.3.1
   run:
     - cmake
     - python
