@@ -11,7 +11,16 @@ source:
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script:
+    # dnn disabled: opencv 5.0.0.93 vendors an incomplete MLAS subset
+    # (3rdparty/mlas) — compute.cpp calls MlasHGemmSupported(), which is
+    # declared in mlas.h but never defined anywhere in the tree. Compiles
+    # fine, fails at import: symbol not found in flat namespace
+    # '__Z18MlasHGemmSupported...'. Unrelated to WITH_ONNXRUNTIME (already OFF).
+    - export CMAKE_ARGS="${CMAKE_ARGS} -DBUILD_opencv_dnn=OFF"   # [unix]
+    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  missing_dso_whitelist:  # [linux]
+    - lib/libz.so.1  # [linux]
   # No setuptools <70 for py313
   skip: true  # [py<36 or py>312]
 
